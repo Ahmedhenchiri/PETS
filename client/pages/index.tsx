@@ -29,7 +29,7 @@ const login = () => {
   };
   const getUserFromDB = () => {
 
-    ///  ahlem modification
+    ///  ahlem modif
     
     axios
       .post("http://localhost:5000/user/login", {
@@ -183,7 +183,7 @@ const login = () => {
                             }}
                             onClick={(e) => loginFn(e)}
                           >
-                            login fbffb
+                            login 
                           </button>
                           <p
                             className="text-gray-500"

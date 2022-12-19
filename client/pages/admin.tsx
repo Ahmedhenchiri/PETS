@@ -17,7 +17,7 @@ import {
 import { auth } from "../firebase-config.js";
 
 
-const collection = () => {
+const AllProduct = () => {
  const router = useRouter()
   const [allProducts, setAllProducts] = useState([])
   const [user, setUser] = useState({} || null);
@@ -36,7 +36,18 @@ const collection = () => {
     window.location.href='/'
   };
  
- 
+//  // DELETE PRODUCT
+// const del = (Pname) => {
+//   axios
+//     .delete(`http://localhost:5000/user/deleteProduct/${Pname}`)
+    
+    
+    
+//     .then((res) => {
+//       console.log("deleted");
+//       //router.push("/AllProductAdmin");
+//     });
+// };
   const filter = (para:any) => {
     axios.get(`http://localHost:5000/user/filter/${para}`).then(res => {
       console.log(res.data);
@@ -46,7 +57,7 @@ const collection = () => {
   }
   const filters = (para:any) => {
     axios.get(`http://localHost:5000/user/filters/${para}`).then(res => {
-      console.log(res.data , "marym" );
+      console.log(res.data , "Halloum" );
       
       setAllProducts(res.data)
     })
@@ -98,7 +109,10 @@ const collection = () => {
 
           {user ? (
             <div>
-              
+               <Link href="/addProduct" className="p-2 text-dark no-underline hover:underline">
+            Add Product
+          </Link> 
+        
               <Link href="" className="p-2 text-dark">
                 <button onClick={logOut}>log out</button>
               </Link>
@@ -110,6 +124,7 @@ const collection = () => {
            )} 
 
         </div>
+       {/* <button>add</button> */}
       </nav>
       <br /><br /><br />
 {/*    
@@ -240,6 +255,25 @@ const collection = () => {
               
                 
                 </a>
+                 <span> 
+                 {/* <button onClick={del(Pname)}  className="inline-block px+100 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
+                            type="button" 
+                            data-mdb-ripple="true"
+                            data-mdb-ripple-color="light"
+                            style={{
+                              background:
+                                "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                            }}>Delete</button>  */}
+                          
+                             <button  className="inline-block px-3 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-70"
+                            type="button"
+                            data-mdb-ripple="true"
+                            data-mdb-ripple-color="light"
+                            style={{
+                              background:
+                                "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                            }}>Update</button></span> 
+                            
                 <ul className="w-100 list-unstyled d-flex justify-content-between mb-0">
                  
                   <li className="pt-2">
@@ -629,4 +663,4 @@ const collection = () => {
         
 
 
-export default collection;
+export default AllProduct;
