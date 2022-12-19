@@ -94,12 +94,12 @@ function Navbar() {
             About us
           </Link>
           {user ? (
-            <div>
+            
              
               <Link href="" className="p-2 text-dark">
                 <button onClick={logOut}>log out</button>
               </Link>
-            </div>
+           
            ) : (
             <Link href="/login" className="p-2 text-dark">
               Login
