@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+#mybutton{
+    background-color:#C6ABAB;
+    color:black
+}
+#name{
+    text-decoration:none;
+    color:black
+}
+#categories{
+    font-family:Roboto,sans-serief;
+    font-size:22px;
+    font-weight:300;
+    line-height:26.4px;
+    text-decoration:none solid rgb(51 ,61,74);
+    text-align : left;
+    word-spacing:0px
+
+}
+#catego{
+    font-family:Roboto,sans-serif;
+    font-size:30px;
+    font-weight:300;
+    line-height:36px;
+    text-decoration:none solid rgb(33 ,37,41);
+    text-align : left;
+    word-spacing:0px
+
+
+}
+#type{
+    font-family:Roboto,sans-serif;
+    font-size:22px;
+    font-weight:300;
+    line-height:26.4px;
+    text-decoration:none solid rgb(105,187,126);
+    text-align : left;
+    word-spacing:0px;
+    background-color:#FFFFFF;
+    position-color:#69BB7E
+
+}
+#im{
+    width:302px;
+    height:302px
+}
+#name
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #231557 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block
+      
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+.colll {
+    flex-direction: column;
+}

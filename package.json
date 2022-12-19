@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@cloudinary/url-gen": "^1.8.7",
+    "firebase": "^9.15.0"
+  }
+}
