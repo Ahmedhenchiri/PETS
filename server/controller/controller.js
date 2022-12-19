@@ -48,7 +48,10 @@ const login = async (req, res) => {
     return { status: "error", error: "username not found" };
   } else {
     const token = jwt.sign(
-      { name: user.Uname, email: user.Uemail, Uimage: user.Uimage },
+
+      // modified by ahlem
+      
+      { name: user.Uname, email: user.Uemail, Uimage: user.Uimage , admin:user.admin,},
       "topsecret"
     );
     return res.json({ user: token, status: "all good" });
