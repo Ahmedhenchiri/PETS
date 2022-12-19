@@ -7,7 +7,7 @@ const singlCollect = ({e}:any) => {
 
 
 
-<nav
+{/* <nav
         className="relative flex h-12 items-center px-4 justify-between shadow-md dark:shadow-gray-700"
         style={{ height: "70px" }}
       >
@@ -39,7 +39,7 @@ const singlCollect = ({e}:any) => {
             Login
           </Link>
         </div>
-      </nav>
+      </nav> */}
 
 <>
   {/* Open Content */}

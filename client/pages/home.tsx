@@ -43,7 +43,7 @@ const home = () => {
   return (
     <>
     <div> 
-    <nav
+    {/* <nav
         className="relative flex h-12 items-center px-4 justify-between shadow-md dark:shadow-gray-700"
         style={{ height: "70px" }}
       >
@@ -84,7 +84,7 @@ const home = () => {
             </Link>
           )}
         </div>
-      </nav>
+      </nav> */}
              
 
           <div className='grid  place-items-center'>
@@ -141,7 +141,7 @@ const home = () => {
     
   
 
-    <footer className="relative bg-blueGray-200 pt-8 pb-6">
+    {/* <footer className="relative bg-blueGray-200 pt-8 pb-6">
   <div className="container mx-auto px-4">
     <div className="flex flex-wrap text-left lg:text-left">
       <div className="w-full lg:w-6/12 px-4">
@@ -215,7 +215,7 @@ const home = () => {
       </div>
     </div>
   </div>
-</footer>
+</footer> */}
 
 
 
