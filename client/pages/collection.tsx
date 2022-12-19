@@ -1,5 +1,5 @@
 import React , { useEffect, useState } from 'react'
-
+import { useRouter } from 'next/router'
 
 import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.css";
@@ -18,7 +18,7 @@ import { auth } from "../firebase-config.js";
 
 
 const collection = () => {
-
+ const router = useRouter()
   const [allProducts, setAllProducts] = useState([])
   const [user, setUser] = useState({} || null);
   const [email, setEmail] = useState("");
@@ -27,7 +27,7 @@ const collection = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      
+      // router.push('/home')
     });
   }, []);
   const logOut = async () => {
@@ -37,15 +37,15 @@ const collection = () => {
   };
  
  
-  const filter = (para) => {
-    axios.get(`http://localHost:3001/user/filter/${para}`).then(res => {
+  const filter = (para:any) => {
+    axios.get(`http://localHost:5000/user/filter/${para}`).then(res => {
       console.log(res.data);
       
       setAllProducts(res.data)
     })
   }
-  const filters = (para) => {
-    axios.get(`http://localHost:3001/user/filters/${para}`).then(res => {
+  const filters = (para:any) => {
+    axios.get(`http://localHost:5000/user/filters/${para}`).then(res => {
       console.log(res.data , "marym" );
       
       setAllProducts(res.data)
@@ -53,11 +53,13 @@ const collection = () => {
   }
   // const [searching,setSearching]=useState('')
   useEffect(() => {
-    axios.get("http://localHost:3001/user/getAllProduct").then(res => {
+    axios.get("http://localHost:5000/user/getAllProduct").then(res => {
       setAllProducts(res.data)
+      console.log(res.data.message);
+      
     })
   }, [])
-  console.log(allProducts,"aziz");
+  console.log(allProducts,"ahlem");
   
   
 
@@ -98,11 +100,11 @@ const collection = () => {
                 <button onClick={logOut}>log out</button>
               </Link>
             </div>
-          ) : (
+          ) : ( 
             <Link href="/login" className="p-2 text-dark">
               Login
             </Link>
-          )}
+           )} 
 
         </div>
       </nav>
@@ -215,8 +217,9 @@ const collection = () => {
           </div>
         </div>
         <div className="row">
-
+         
         {  allProducts && allProducts.map((e)=>{
+         {console.log(allProducts)}
           return (
              <>
           <div className="col-md-4">

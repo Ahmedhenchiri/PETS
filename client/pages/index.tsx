@@ -16,8 +16,8 @@ const login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState({} || null);
-  const [forgetPassword, setForgetPassword] = useState(false)
-  const [resetEmail, setResetEmail]= useState('')
+  const [forgetPassword, setForgetPassword] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
@@ -28,35 +28,64 @@ const login = () => {
     await signOut(auth);
   };
   const getUserFromDB = () => {
+
+    ///  ahlem modification
+    
     axios
-      .post("http://localhost:3001/user/login", {
-       
+      .post("http://localhost:5000/user/login", {
         Uemail: email,
-     
       })
       .then((res) => {
         console.log(res.data);
-                  localStorage.setItem("user", JSON.stringify(res.data));
-window.location.href='/home'
+
+        console.log("token:", res.data.user); // to show all token (3parts)
+        let token = atob(res.data.user.toString().split(".")[1]); // get the Middle token (1 part)
+        // atob te5o token (mhachi) traj3o valeur reel"
+        console.log(token); /// return string !!!
+        let parsed_token = JSON.parse(token); // convert string to object
+        console.log(parsed_token);
+        let admin = parsed_token.admin; // to get valeur admin from the all object
+        console.log("role:", admin);
+        localStorage.setItem("testadmin", JSON.stringify(admin)); // to save this valeur in the local storage
+        // window.location.href = "/home";
         console.log(`${email} connected `);
+      })
+      .then(() => {
+        displayComponent(); // invoker function of chek
       })
       .catch((err) => {
         console.error(err);
       });
   };
-  
+//ahlem
+  // check our valuer if admin or user
+  const displayComponent = () => {
+    let role = localStorage.getItem("testadmin"); // reteurn the response from local storage
+    let Parsed_role = JSON.parse(role); // parsed returned value
+    console.log("test", Parsed_role);
+    if (Parsed_role === true) {
+      return (window.location.href = "/admin");
+    } else if (Parsed_role === false) {
+      return (window.location.href = "/home");
+    }
+  };
+
   const loginFn = async (e: any) => {
     e.preventDefault(false);
     try {
-      const Credential = await signInWithEmailAndPassword(auth, email, password);
+      const Credential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       console.log(Credential.user);
-      getUserFromDB()
+      getUserFromDB();
       //    navigate("/home");
     } catch (error: any) {
       console.log(error.message);
     }
   };
-  const sendPasswordReset = async (email : any) => {
+  const sendPasswordReset = async (email: any) => {
     try {
       await sendPasswordResetEmail(auth, email);
       alert("Password reset link sent!");
@@ -84,10 +113,8 @@ window.location.href='/home'
         />
 
         <div>
-          
           {user ? (
             <div>
-             
               <Link href="" className="p-2 text-dark">
                 <button onClick={logOut}>log out</button>
               </Link>
@@ -156,7 +183,7 @@ window.location.href='/home'
                             }}
                             onClick={(e) => loginFn(e)}
                           >
-                            login
+                            login fbffb
                           </button>
                           <p
                             className="text-gray-500"
