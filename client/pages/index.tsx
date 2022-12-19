@@ -101,32 +101,6 @@ const login = () => {
   // }
   return (
     <div>
-      <nav
-        className="relative flex h-12 items-center px-4 justify-between shadow-md dark:shadow-gray-700"
-        style={{ height: "70px" }}
-      >
-        <img
-          src="https://res.cloudinary.com/dnwi9wvci/image/upload/v1670936284/1_rdfnhm.png"
-          className="logo"
-          style={{ width: "200px", height: "170px" }}
-          alt=""
-        />
-
-        <div>
-          {user ? (
-            <div>
-              <Link href="" className="p-2 text-dark">
-                <button onClick={logOut}>log out</button>
-              </Link>
-            </div>
-          ) : (
-            <Link href="/login" className="p-2 text-dark">
-              Login
-            </Link>
-          )}
-        </div>
-      </nav>
-
       <section className="h-full gradient-form bg-gray-200 md:h-screen">
         <div className="container py-12 px-6 h-full">
           <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
