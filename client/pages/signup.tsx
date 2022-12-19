@@ -9,8 +9,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase-config.js";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
-// const navigate = useNavigate();
+
 
 const signup = () => {
   const [email, setEmail] = useState("");
