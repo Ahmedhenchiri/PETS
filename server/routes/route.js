@@ -15,14 +15,17 @@ const {
     CheckUser,
     FiltercategoProduct,
     FiltertypeProduct,
+    updateOne,
    
 } = require("../controller/controller");
 
 //Posts requests
 dcrouter.route('/addProduct').post(addProduct)
-dcrouter.route('/deleteProduct/:id').delete(deleteProduct)
-dcrouter.route('/getAllProducts').get(GetAllProducts)
 
+dcrouter.route('/deleteProduct/:id').delete(deleteProduct)
+
+dcrouter.route('/getAllProducts').get(GetAllProducts)
+dcrouter.route('/updateOneProduct/:_id').put(updateOne)
 
 
 //user Requests
@@ -34,7 +37,7 @@ dcrouter.route("/signup").post(signUp);
 dcrouter.route("/login").post(login);
 dcrouter.route("/check").post(CheckUser);
 
-//Recipe Requests
+//product Requests
 dcrouter.route("/getallproduct").get(GetAllProducts); 
 dcrouter.route("/deleteProduct/:id").delete(deleteProduct); 
 dcrouter.route("/productlike/:name").put(Like); 

@@ -4,10 +4,25 @@ const { User, Product} = require("../database");
 const cloudinary = require("../cloudinary");
 
 
+// const deleteProduct = async (req, res) => {
+//   let _id = req.params._id
+//   try {
+//     Product.deleteOne({ _id: _id }, (err, result) => {
+//       if (err) console.log(err)
+//       res.json(result)
+//     })
+
+//   } catch (error) {
+//     res.json(error)
+//   }
+// }
+
 const deleteProduct = async (req, res) => {
+
   await Product.findByIdAndDelete(req.params.id);
   try {
     res.status(201).json({ message: " success to delete product " });
+
   } catch (error) {
     res.status(404).json(error);
   }
@@ -271,6 +286,26 @@ const FiltertypeProduct = async (req, res) => {
       res.json(err);
     }
   };
+
+  // ahlem function update product
+
+  const updateOne = async (req, res) => {
+    // console.log(req.params);
+  
+    // console.log(id);
+  
+    try {
+      const productUpdated = await Product.findByIdAndUpdate(
+        { _id: req.params._id },
+        { $set: req.body },
+        { new: true }
+      );
+  
+      res.send(productUpdated);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 module.exports = {
 
   deleteUser,
@@ -287,6 +322,8 @@ module.exports = {
   getAllUsers,
   CheckUser,
   FiltercategoProduct,
-  FiltertypeProduct
+  FiltertypeProduct,
+  updateOne,
+  
   
 };
