@@ -1,4 +1,4 @@
-import React , { useEffect, useState } from 'react'
+import React , { useContext, useEffect, useState } from 'react'
 import Link from "next/link"
 import SimpleImageSlider from "react-simple-image-slider";
 
@@ -22,6 +22,7 @@ const images = [
 
   
 ];
+// const user = useContext(UserContext)
 const home = () => {
   const [user, setUser] = useState({} || null);
   const [email, setEmail] = useState("");
@@ -53,7 +54,7 @@ const home = () => {
         
       />
     </div>
-
+{/* <h1>{user}</h1> */}
 
     </div>
 
