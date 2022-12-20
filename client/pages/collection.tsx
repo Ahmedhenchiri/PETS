@@ -1,6 +1,7 @@
-import React , { useEffect, useState } from 'react'
+//@ts-nocheck
+import React , { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-
+import AppContext from '../components/AppContext';
 import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -22,7 +23,7 @@ const collection = () => {
   const [allProducts, setAllProducts] = useState([])
   const [user, setUser] = useState({} || null);
   const [email, setEmail] = useState("");
-
+const context = useContext(AppContext)
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
@@ -106,7 +107,7 @@ const collection = () => {
               
             </button>
             
-            
+            <h1>{context.user}</h1> 
           </li>
           <li className="pb-3">
             <button id="categories"

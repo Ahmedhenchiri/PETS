@@ -5,17 +5,13 @@ const cloudinary = require("../cloudinary");
 
 
 const deleteProduct = async (req, res) => {
-  let id = req.params.id
+  await Product.findByIdAndDelete(req.params.id);
   try {
-    Product.deleteOne({ Pname: id }, (err, result) => {
-      if (err) console.log(err)
-      res.json(result)
-    })
-
+    res.status(201).json({ message: " success to delete product " });
   } catch (error) {
-    res.json(error)
+    res.status(404).json(error);
   }
-}
+};
 
 
 

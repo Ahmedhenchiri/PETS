@@ -20,7 +20,7 @@ const {
 
 //Posts requests
 dcrouter.route('/addProduct').post(addProduct)
-dcrouter.route('/deleteProduct/:name').delete(deleteProduct)
+dcrouter.route('/deleteProduct/:id').delete(deleteProduct)
 dcrouter.route('/getAllProducts').get(GetAllProducts)
 
 
