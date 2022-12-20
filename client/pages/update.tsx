@@ -1,74 +1,57 @@
-// import React from 'react'
-
-// export default function add() {
-//   return (
-//     <div>add</div>
-//   )
-// }
-
-
-
-// // form pour collecter les donnes de products 
-//  // ajouter bouton submit 
-
-//  // invoker fonction 'add' dans le bouton submit 
-
-//  // function add : 
-//  axios.post("gfyufyvhjv/add",{
-
-// name : name 
-
-//  })
-//@ts-nocheck
-import React, { useState } from "react";
 import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+//import NavbarAdmin from "../../NavbarAdmin";
+//import Footer from "../../Footer";
 
-
-
-export default function AddProduct() {
- // const router = useRouter();
-
+const Update = () => {
+  const router = useRouter();
+  const [data, setData] = useState([]);
   const [Pname, setPname] = useState("");
   const [Ptype, setPtype] = useState("");
   const [Pcategorie, setPcategorie] = useState("");
   const [Pimage, setPimage] = useState("");
   const [Pprice, setPprice] = useState("");
   const [Pdescription, setPdescription] = useState("");
-  const router =useRouter()
-  //ADD A PRODUCT
+  console.log(data);
+  //   console.log(id);
+  useEffect(() => {
+    if (router.isReady) {
+      // Code using query)
 
-  const add = () => {
+      console.log(router.query.id);
+      axios
+        .get(`http://localhost:5000/user/updateOneProduct/${router.query._id}`)
+        .then((res) => setData(res.data))
+        .catch((err) => console.log(err));
+    }
+  }, [router.isReady]);
+  const up = () => {
     axios
-      .post("http://localhost:5000/user/addProduct", {
+      .put(`http://localhost:5000/user/updateOneProduct/${router.query._id}`, {
         Pname,
         Ptype,
         Pcategorie,
         Pimage,
         Pprice,
-        Pdescription
-        // const [Pimage, setPimage] = useState("");
-        // ,
-        // imageUrl,
-        // color,
+        Pdescription,
       })
       .then((res) => {
-        console.log("posted");
-        router.push("/admin");
+        console.log(res);
+        router.push("/AllProductAdmin");
       });
   };
-
-
 
   return (
     <div>
       {/* <div>
         <NavbarAdmin />
       </div> */}
+
       <center>
         <div className="form">
           <div className="title">Welcome Admin</div>
-          <div className="subtitle">Add a New Product</div>
+          <div className="subtitle">Update Product</div>
           <div className="input-container ic1">
             <input
               id="firstname"
@@ -160,21 +143,10 @@ export default function AddProduct() {
               Description
             </label>
           </div>
-          <br /><br />
 
-          <button
-                            className="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
-                            type="button"
-                            data-mdb-ripple="true"
-                            data-mdb-ripple-color="light"
-                            style={{
-                              background:
-                                "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
-                            }}
-                            onClick={() => add()}
-                          >
-                            Submit 
-                          </button>
+          <button className="submit" onClick={() => up()}>
+            Update
+          </button>
         </div>
       </center>
       {/* <div>
@@ -182,5 +154,5 @@ export default function AddProduct() {
       </div> */}
     </div>
   );
-}
-
+};
+export default Update;

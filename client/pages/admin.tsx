@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React , { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
@@ -36,18 +37,20 @@ const AllProduct = () => {
     window.location.href='/'
   };
  
-//  // DELETE PRODUCT
-// const del = (Pname) => {
-//   axios
-//     .delete(`http://localhost:5000/user/deleteProduct/${Pname}`)
+ // DELETE PRODUCT
+const del = (_id) => {
+  axios
+    .delete(`http://localhost:5000/user/deleteProduct/${_id}`)
     
     
     
-//     .then((res) => {
-//       console.log("deleted");
-//       //router.push("/AllProductAdmin");
-//     });
-// };
+    .then((res) => {
+      console.log(res);
+router.reload(window.location.pathname)
+      //router.push("/AllProductAdmin");
+    });
+    
+};
   const filter = (para:any) => {
     axios.get(`http://localHost:5000/user/filter/${para}`).then(res => {
       console.log(res.data);
@@ -256,14 +259,15 @@ const AllProduct = () => {
                 
                 </a>
                  <span> 
-                 {/* <button onClick={del(Pname)}  className="inline-block px+100 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
+                   <button onClick={()=>{
+                     del(e._id)}}  className="inline-block px+100 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
                             type="button" 
                             data-mdb-ripple="true"
                             data-mdb-ripple-color="light"
                             style={{
                               background:
                                 "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
-                            }}>Delete</button>  */}
+                            }}>Delete</button>   
                           
                              <button  className="inline-block px-3 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-70"
                             type="button"
