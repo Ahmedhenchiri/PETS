@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { stringify } = require('querystring');
-mongoose.connect("mongodb://0.0.0.0/catsdogs",{ 
+mongoose.connect("mongodb+srv://row:roweyd2000@cluster0.1deydxx.mongodb.net/test",{ 
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

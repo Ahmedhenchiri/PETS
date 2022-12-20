@@ -55,7 +55,7 @@ const home = () => {
         />
 
         <div>
-          <Link href="/" className="p-2 text-dark no-underline hover:underline">
+          <Link href="/home" className="p-2 text-dark no-underline hover:underline">
             Home
           </Link>
           <Link href="/collection" className="p-2 text-dark no-underline hover:underline">
