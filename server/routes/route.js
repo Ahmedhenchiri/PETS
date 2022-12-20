@@ -21,7 +21,9 @@ const {
 
 //Posts requests
 dcrouter.route('/addProduct').post(addProduct)
-dcrouter.route('/deleteProduct/:_id').delete(deleteProduct)
+
+dcrouter.route('/deleteProduct/:id').delete(deleteProduct)
+
 dcrouter.route('/getAllProducts').get(GetAllProducts)
 dcrouter.route('/updateOneProduct/:_id').put(updateOne)
 

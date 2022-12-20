@@ -1,23 +1,27 @@
-import React  from 'react'
+//@ts-nocheck
+import React, { createContext,useContext }  from 'react'
 import Link from "next/link"
-
+import AppContext from '../components/AppContext'
 const cart = () => {
 
+const context = useContext(AppContext)
 
+const count = ()=>{
 
-
+}
 
   return (
     <div>
 
-      <div className="h-screen bg-gray-300">
+  <div className="h-screen bg-gray-300">
   <div className="py-12">
     <div className="max-w-md mx-auto bg-gray-100 shadow-lg rounded-lg  md:max-w-5xl">
       <div className="md:flex ">
         <div className="w-full p-4 px-5 py-5">
           <div className="md:grid md:grid-cols-3 gap-2 ">
             <div className="col-span-2 p-5">
-              <h1 className="text-xl font-medium ">Shopping Cart</h1>
+              <h1 className="text-xl font-medium ">Shopping Cart </h1>
+              {/* <button onClick={()=>{context.setConter=context.setConter+1}}>add</button> */}
               <div className="flex justify-between items-center mt-6 pt-6">
                 <div className="flex  items-center">
                   <img
