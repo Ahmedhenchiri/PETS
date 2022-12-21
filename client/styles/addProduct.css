@@ -51,7 +51,7 @@
   }
   
   .cut {
-    background-color: #cecdcd;
+    background-color: #efe9e9;
     border-radius: 10px;
     height: 20px;
     left: 20px;
@@ -72,8 +72,8 @@
   }
   
   .placeholder {
-    color: #65657b;
     
+    color: #7E3095;
     font-family: sans-serif;
     left: 20px;
     line-height: 14px;

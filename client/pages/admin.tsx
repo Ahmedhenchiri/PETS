@@ -269,14 +269,19 @@ router.reload(window.location.pathname)
                                 "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
                             }}>Delete</button>   
                           
+
+                          <Link href={"./id"}as= {`./${e._id}`} >
                              <button  className="inline-block px-3 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-70"
-                            type="button"
+
+
                             data-mdb-ripple="true"
                             data-mdb-ripple-color="light"
                             style={{
                               background:
                                 "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
-                            }}>Update</button></span> 
+                            }}>Update</button>
+                            </Link>
+                            </span> 
                             
                 <ul className="w-100 list-unstyled d-flex justify-content-between mb-0">
                  

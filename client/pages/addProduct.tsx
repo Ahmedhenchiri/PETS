@@ -74,7 +74,7 @@ export default function AddProduct() {
               id="firstname"
               className="input"
               type="text"
-              placeholder=" "
+              placeholder=" hhhhh"
               onChange={(e) => {
                 setPname(e.target.value);
               }}
@@ -82,15 +82,37 @@ export default function AddProduct() {
             <div className="cut" />
             <label htmlFor="firstname" className="placeholder">
               {" "}
-              Name
+              name
             </label>
           </div>
+
+
+
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <div className="input-container ic2">
             <input
               id="lastname"
               className="input"
               type="text"
-              placeholder=" "
+              placeholder=" ggg"
               onChange={(e) => {
                 setPtype(e.target.value);
               }}
