@@ -41,7 +41,7 @@ const [result,setResult] = useState({})
             />
           </div>
           <div className="row">
-            {/*Start Controls*/}
+           
             <div className="col-1 align-self-center">
               <a href="#multi-item-example" role="button" data-bs-slide="prev">
                 <i className="text-dark fas fa-chevron-left" />
