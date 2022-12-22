@@ -1,9 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-//import NavbarAdmin from "../../NavbarAdmin";
-//import Footer from "../../Footer";
-
 const Update = () => {
   const router = useRouter();
   const [data, setData] = useState([]);
