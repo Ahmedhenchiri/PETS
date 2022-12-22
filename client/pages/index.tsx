@@ -58,7 +58,7 @@ const login = () => {
       });
   };
 //ahlem
-  // check our valuer if admin or user
+  // check our value  if admin or user
   const displayComponent = () => {
     let role = localStorage.getItem("testadmin"); // reteurn the response from local storage
     let Parsed_role = JSON.parse(role); // parsed returned value

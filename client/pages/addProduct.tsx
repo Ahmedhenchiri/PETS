@@ -1,33 +1,14 @@
-// import React from 'react'
 
-// export default function add() {
-//   return (
-//     <div>add</div>
-//   )
-// }
-
-
-
-// // form pour collecter les donnes de products 
-//  // ajouter bouton submit 
-
-//  // invoker fonction 'add' dans le bouton submit 
-
-//  // function add : 
-//  axios.post("gfyufyvhjv/add",{
-
-// name : name 
-
-//  })
-//@ts-nocheck
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-
+import Link from "next/link"
+import {signOut,} from "firebase/auth";
+import { auth } from "../firebase-config.js";
 
 
 export default function AddProduct() {
- // const router = useRouter();
+ //const router = useRouter();
 
   const [Pname, setPname] = useState("");
   const [Ptype, setPtype] = useState("");
@@ -35,7 +16,15 @@ export default function AddProduct() {
   const [Pimage, setPimage] = useState("");
   const [Pprice, setPprice] = useState("");
   const [Pdescription, setPdescription] = useState("");
+  const [user, setUser] = useState({} || null);
   const router =useRouter()
+
+  const logOut = async () => {
+
+    await signOut(auth);
+    window.location.href='/'
+  };
+  
   //ADD A PRODUCT
 
   const add = () => {
@@ -47,10 +36,7 @@ export default function AddProduct() {
         Pimage,
         Pprice,
         Pdescription
-        // const [Pimage, setPimage] = useState("");
-        // ,
-        // imageUrl,
-        // color,
+        
       })
       .then((res) => {
         console.log("posted");
@@ -62,64 +48,75 @@ export default function AddProduct() {
 
   return (
     <div>
-      {/* <div>
-        <NavbarAdmin />
-      </div> */}
+     <nav
+        className="relative flex h-12 items-center px-4 justify-between shadow-md dark:shadow-gray-700"
+        style={{ height: "70px" }}
+      >
+        <img
+          src="https://res.cloudinary.com/dnwi9wvci/image/upload/v1670936284/1_rdfnhm.png"
+          className="logo"
+          style={{ width: "200px", height: "170px" }}
+          alt=""
+        />
+          <h6 >ADMIN</h6>
+
+        <div>
+         
+
+          {user ? (
+            <div>
+               <Link href="/addProduct" className="p-2 text-dark no-underline hover:underline">
+            Add Product
+          </Link> 
+        
+              <Link href="" className="p-2 text-dark">
+                <button onClick={logOut}>log out</button>
+              </Link>
+            </div>
+          ) : ( 
+            <Link href="/login" className="p-2 text-dark">
+              Login
+            </Link>
+           )} 
+
+        </div>
+      
+      </nav>
+      <br /><br /><br />
       <center>
         <div className="form">
           <div className="title">Welcome Admin</div>
           <div className="subtitle">Add a New Product</div>
-          <div className="input-container ic1">
+          <div className="input-container ic1" ><label calssName="name">Name:</label>
             <input
               id="firstname"
               className="input"
               type="text"
-              placeholder=" hhhhh"
+              placeholder=" "
               onChange={(e) => {
                 setPname(e.target.value);
               }}
             />
             <div className="cut" />
-            <label htmlFor="firstname" className="placeholder">
-              {" "}
-              name
+            <label htmlFor="firstname" >
+            
+              Type:
             </label>
           </div>
 
-
-
-
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <div className="input-container ic2">
+          <div className="input-container ic2"  ><br></br>
             <input
               id="lastname"
               className="input"
               type="text"
-              placeholder=" ggg"
+              placeholder=" "
               onChange={(e) => {
                 setPtype(e.target.value);
               }}
             />
             <div className="cut" />
-            <label htmlFor="lastname" className="placeholder">
-              Type
+            <label htmlFor="lastname" className="name">
+              Categorie:
             </label>
           </div>
           <div className="input-container ic2">
@@ -133,8 +130,8 @@ export default function AddProduct() {
               }}
             />
             <div className="cut" />
-            <label htmlFor="lastname" className="placeholder">
-              Categorie
+            <label htmlFor="lastname" className="name">
+              Image:
             </label>
           </div>
           <div className="input-container ic2">
@@ -148,8 +145,8 @@ export default function AddProduct() {
               }}
             />
             <div className="cut" />
-            <label htmlFor="lastname" className="placeholder">
-              Image
+            <label htmlFor="lastname" className="name">
+              Price:
             </label>
           </div>
           <div className="input-container ic2">
@@ -163,8 +160,8 @@ export default function AddProduct() {
               }}
             />
             <div className="cut" />
-            <label htmlFor="lastname" className="placeholder">
-              Price
+            <label htmlFor="lastname" className="name">
+              Description:
             </label>
           </div>
           <div className="input-container ic2">
@@ -178,8 +175,8 @@ export default function AddProduct() {
               }}
             />
             <div className="cut" />
-            <label htmlFor="lastname" className="placeholder">
-              Description
+            <label htmlFor="lastname" >
+             
             </label>
           </div>
           <br /><br />
