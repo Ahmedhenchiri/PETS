@@ -6,7 +6,14 @@
     padding: 20px;
     width: 600px;
   }
-  
+
+    .name{
+    
+      text-align: left;
+      float: left;
+      }
+      
+    
   .title {
     color: rgb(160, 54, 146);
     font-family: sans-serif;
@@ -31,10 +38,15 @@
   
   .ic1 {
     margin-top: 40px;
+    color: #0f0f0f;
+    text-align: left;
+    
+    
   }
   
   .ic2 {
     margin-top: 30px;
+    
   }
   
   .input {
@@ -50,17 +62,17 @@
     width: 100%;
   }
   
-  .cut {
-    background-color: #cecdcd;
+   /* .cut { 
+    background-color: #efe9e9;
     border-radius: 10px;
     height: 20px;
     left: 20px;
-    position: absolute;
+    position:absolute;
     top: -20px;
     transform: translateY(0);
     transition: transform 200ms;
     width: 76px;
-  }
+  } */
   
   .cut-short {
     width: 50px;
@@ -70,10 +82,10 @@
   .input:not(:placeholder-shown) ~ .cut {
     transform: translateY(8px);
   }
-  
-  .placeholder {
-    color: #65657b;
+   */
+  /* .placeholder {
     
+    color: #309541;
     font-family: sans-serif;
     left: 20px;
     line-height: 14px;
@@ -82,9 +94,9 @@
     transform-origin: 0 50%;
     transition: transform 200ms, color 200ms;
     top: 20px;
-  }
+  } */
   
-  .input:focus ~ .placeholder,
+  /* .input:focus ~ .placeholder,
   .input:not(:placeholder-shown) ~ .placeholder {
     transform: translateY(-30px) translateX(10px) scale(0.75);
   }
@@ -95,7 +107,7 @@
   
   .input:focus ~ .placeholder {
     color: #7E3095;
-  }
+  } */
   
   .submit {
     background-color: #ea876b;
@@ -113,7 +125,7 @@
   }
   
   .submit:active {
-    background-color: #886a91;
+    background-color: #c007f9;
   }
   
 

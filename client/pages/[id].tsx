@@ -1,32 +1,20 @@
-
-<<<<<<< HEAD
-=======
-// export default function add() {
-//   return (
-//     <div>add</div>
-//   )
-// }
-//@ts-nocheck
->>>>>>> 7414b5324c00c5cedb344f8e90254cb909da5486
-import React, { useState } from "react";
 import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link"
+
 import {signOut,} from "firebase/auth";
-import { auth } from "../firebase-config.js";
 
-
-export default function AddProduct() {
- //const router = useRouter();
-
+const Update = () => {
+  const router = useRouter();
+  //const [data, setData] = useState([]);
   const [Pname, setPname] = useState("");
   const [Ptype, setPtype] = useState("");
   const [Pcategorie, setPcategorie] = useState("");
   const [Pimage, setPimage] = useState("");
   const [Pprice, setPprice] = useState("");
-  const [Pdescription, setPdescription] = useState("");
   const [user, setUser] = useState({} || null);
-  const router =useRouter()
+  const [Pdescription, setPdescription] = useState("");
 
   const logOut = async () => {
 
@@ -34,30 +22,27 @@ export default function AddProduct() {
     window.location.href='/'
   };
   
-  //ADD A PRODUCT
-
-  const add = () => {
+  const updateelement = () => {
     axios
-      .post("http://localhost:5000/user/addProduct", {
-        Pname,
-        Ptype,
-        Pcategorie,
-        Pimage,
-        Pprice,
-        Pdescription
-        
+      .put(`http://localhost:5000/user/updateOneProduct/${router.query.id}`, {
+        Pname:Pname,
+        Ptype:Ptype,
+        Pcategorie:Pcategorie,
+        Pimage:Pimage,
+        Pprice:Pprice,
+        Pdescription:Pdescription,
       })
       .then((res) => {
-        console.log("posted");
+        console.log(res);
+        console.log("yes updated");
+        
         router.push("/admin");
       });
   };
 
-
-
   return (
     <div>
-     <nav
+       <nav
         className="relative flex h-12 items-center px-4 justify-between shadow-md dark:shadow-gray-700"
         style={{ height: "70px" }}
       >
@@ -92,12 +77,13 @@ export default function AddProduct() {
       
       </nav>
       <br /><br /><br />
+
       <center>
         <div className="form">
           <div className="title">Welcome Admin</div>
-          <div className="subtitle">Add a New Product</div>
+          <div className="subtitle">Update Product</div>
           <div className="input-container ic1" ><label calssName="name">Name:</label>
-            <input
+            <input 
               id="firstname"
               className="input"
               type="text"
@@ -108,12 +94,11 @@ export default function AddProduct() {
             />
             <div className="cut" />
             <label htmlFor="firstname" >
-            
+              
               Type:
             </label>
           </div>
-
-          <div className="input-container ic2"  ><br></br>
+          <div className="input-container ic2"><br></br>
             <input
               id="lastname"
               className="input"
@@ -175,7 +160,6 @@ export default function AddProduct() {
           </div>
           <div className="input-container ic2">
             <input
-              id="lastname"
               className="input"
               type="text"
               placeholder=" "
@@ -184,11 +168,10 @@ export default function AddProduct() {
               }}
             />
             <div className="cut" />
-            <label htmlFor="lastname" >
+            <label htmlFor="lastname" className="placeholder">
              
             </label>
           </div>
-          <br /><br />
 
           <button
                             className="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
@@ -199,16 +182,14 @@ export default function AddProduct() {
                               background:
                                 "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
                             }}
-                            onClick={() => add()}
+                            onClick={() => updateelement()}
                           >
-                            Submit 
+                            Update 
                           </button>
         </div>
       </center>
-      {/* <div>
-        <Footer />
-      </div> */}
+     
     </div>
   );
-}
-
+};
+export default Update;

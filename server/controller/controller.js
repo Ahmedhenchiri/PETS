@@ -4,19 +4,6 @@ const { User, Product} = require("../database");
 const cloudinary = require("../cloudinary");
 
 
-// const deleteProduct = async (req, res) => {
-//   let _id = req.params._id
-//   try {
-//     Product.deleteOne({ _id: _id }, (err, result) => {
-//       if (err) console.log(err)
-//       res.json(result)
-//     })
-
-//   } catch (error) {
-//     res.json(error)
-//   }
-// }
-
 const deleteProduct = async (req, res) => {
 
   await Product.findByIdAndDelete(req.params.id);
@@ -32,14 +19,7 @@ const deleteProduct = async (req, res) => {
 
 const signUp = async (req, res) => {
   try {
-    // const pw = bcrypt.hashSync(req.body.Upassword, 8);
-
-    // await User.create({
-    //   Uname: req.body.username,
-    //   Uemail: req.body.email,
-    //   Upassword: pw
-    // })
-
+    
     await User.create(req.body)
 
     res.json({ message: `${req.body.Uname} added successfuly` });
@@ -70,30 +50,6 @@ const login = async (req, res) => {
   }
 
 
-
-
-
-// const SignUp= async(req,res)=>{
-//     let body= req.body
-//     try{
-// const Password= await bcrypt.hash(body.password,10)
-
-
-//     await User.create({
-//       Uname: body.username,
-//       Uemail: body.email,
-//       Upassword: Password
-//     }, (err, result) => {
-//       if (err) console.log(err);
-
-//       else res.json(result);
-//     })
-//   } catch (err) {
-
- 
-//     console.log('err')
-//   }
-// }
 
 const CheckUser = async (req, res) => {
 
@@ -144,28 +100,6 @@ const UpdateUser = async (req, res) => {
     res.json(err, 'errorrororoeeeee');
   }
 };
-// const Login = async (req, res) => {
-//   let body = req.body
-
-
-//   const user = await User.findOne({ Uname: body.username })
-
-//   if (!user) {
-//     return { status: 'error', error: 'username not found' }
-//   }
-//   let Check = await bcrypt.compare(
-//     body.password, user.Upassword
-//   )
-//   if (Check) {
-//     const token = jwt.sign({ name: user.Uname, email: user.Uemail }, 'topsecret')
-//     return res.json({ user: token, status: 'all good' })
-//   }
-//   else {
-//     return res.json({ status: 'error', user: false })
-//   }
-// }
-
-
 
 const addProduct = async (req, res) => {
 
@@ -287,7 +221,7 @@ const FiltertypeProduct = async (req, res) => {
     }
   };
 
-  // ahlem function update product
+  //  update product
 
   const updateOne = async (req, res) => {
     // console.log(req.params);

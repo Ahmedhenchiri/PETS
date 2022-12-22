@@ -57,10 +57,11 @@ const login = () => {
         console.error(err);
       });
   };
+  
 //ahlem
-  // check our valuer if admin or user
+  // check our value  if admin or user
   const displayComponent = () => {
-    let role = localStorage.getItem("testadmin"); // reteurn the response from local storage
+    let role = localStorage.getItem("testadmin"); // return the response from local storage
     let Parsed_role = JSON.parse(role); // parsed returned value
     console.log("test", Parsed_role);
     if (Parsed_role === true) {
@@ -94,11 +95,7 @@ const login = () => {
       alert(err.message);
     }
   };
-  // const  getCurrentUser =() =>{
-  //   if (typeof window !== 'undefined') {
-  //     return JSON.parse(localStorage.getItem('user'))
-  //   }
-  // }
+  
   return (
     <div>
       <section className="h-full gradient-form bg-gray-200 md:h-screen">
