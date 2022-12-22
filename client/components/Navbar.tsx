@@ -37,7 +37,9 @@ function Navbar() {
            await signOut(auth);
            window.location.href='/'
          };
-        
+        console.log('====================================');
+        console.log(user);
+        console.log('====================================');
         
         //  const filter = (para:any) => {
         //    axios.get(`http://localHost:5000/user/filter/${para}`).then(res => {
@@ -75,7 +77,7 @@ function Navbar() {
           style={{ width: "200px", height: "170px" }}
           alt=""
         />
-
+         <h6 >ADMIN</h6>
         <div>
           <Link href="/home" className="p-2 text-dark no-underline hover:underline">
             Home
@@ -94,12 +96,15 @@ function Navbar() {
             About us
           </Link>
           {user ? (
-            
+            <div>
+            <Link href="/addProduct" className="p-2 text-dark no-underline hover:underline">
+                Add Product
+               </Link> 
              
               <Link href="" className="p-2 text-dark">
                 <button onClick={logOut}>log out</button>
               </Link>
-           
+              </div>
            ) : (
             <Link href="/login" className="p-2 text-dark">
               Login

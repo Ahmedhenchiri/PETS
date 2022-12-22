@@ -248,7 +248,7 @@ const Like = async (req, res) => {
 };
 const getOneProduct = async (req, res) => {
   try {
-    await Product.find({ Pname: req.params.name }).then((result) => {
+    await Product.find({ _id: req.params.id }).then((result) => {
       res.json(result);
     });
   } catch (err) {

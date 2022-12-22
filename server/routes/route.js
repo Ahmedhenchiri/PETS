@@ -42,7 +42,7 @@ dcrouter.route("/getallproduct").get(GetAllProducts);
 dcrouter.route("/deleteProduct/:id").delete(deleteProduct); 
 dcrouter.route("/productlike/:name").put(Like); 
 dcrouter.route("/productdislike/:name").put(disLike); 
-dcrouter.route("/oneproduct/:name").get(getOneProduct); 
+dcrouter.route("/oneproduct/:id").get(getOneProduct); 
 dcrouter.route("/filter/:Ptype").get(FiltertypeProduct)
 dcrouter.route("/filters/:Pcategorie").get(FiltercategoProduct)
 
@@ -50,4 +50,4 @@ dcrouter.route("/filters/:Pcategorie").get(FiltercategoProduct)
 
 
 
-module.exports = dcrouter;
+module.exports = dcrouter;  

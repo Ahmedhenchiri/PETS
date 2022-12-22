@@ -1,12 +1,12 @@
 //@ts-nocheck
-import React , { useContext, useEffect, useState } from 'react'
+import React , { useContext, useEffect, useState} from 'react'
 import { useRouter } from 'next/router'
 import AppContext from '../components/AppContext';
 import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.css";
-
+import Single from './oneProdect/[id]'
 import Link from "next/link"
-
+import Mycontext from './context';
 
 import {
   createUserWithEmailAndPassword,
@@ -20,10 +20,11 @@ import { auth } from "../firebase-config.js";
 
 const collection = () => {
  const router = useRouter()
+ 
   const [allProducts, setAllProducts] = useState([])
   const [user, setUser] = useState({} || null);
   const [email, setEmail] = useState("");
-const context = useContext(AppContext)
+// const Mycontext = useContext({})
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
@@ -106,8 +107,8 @@ const context = useContext(AppContext)
               coats&jackets
               
             </button>
-            
-            <h1>{context.user}</h1> 
+{/*             
+            <h1>{context.user}</h1>  */}
           </li>
           <li className="pb-3">
             <button id="categories"
@@ -180,12 +181,13 @@ const context = useContext(AppContext)
          {console.log(allProducts)}
           return (
              <>
-          <div className="col-md-4">
+          <div  className="col-md-4">
             <div className="card mb-4 product-wap rounded-0">
               <div className="card rounded-0">
                 <img id="im"
                   className="card-img rounded-0 img-fluid"
                   src={e.Pimage}
+                  // onClick={()=>{}}
                   
                 />
                 
@@ -216,6 +218,9 @@ const context = useContext(AppContext)
                   </li>
                 </ul>
                 <p className="text-center mb-0">${e.Pprice}</p>
+                {/* <Link key={e._id}  href={'/id' }>More details</Link> */}
+              <button  onClick={()=>{router.push(`/oneProdect/${e._id}`)
+              }}>More details</button>
               </div>
             </div>
           </div>
@@ -244,4 +249,4 @@ const context = useContext(AppContext)
   );
 };
 
-export default collection;
+export default collection ;

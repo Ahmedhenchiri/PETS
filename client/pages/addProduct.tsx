@@ -5,20 +5,6 @@
 //     <div>add</div>
 //   )
 // }
-
-
-
-// // form pour collecter les donnes de products 
-//  // ajouter bouton submit 
-
-//  // invoker fonction 'add' dans le bouton submit 
-
-//  // function add : 
-//  axios.post("gfyufyvhjv/add",{
-
-// name : name 
-
-//  })
 //@ts-nocheck
 import React, { useState } from "react";
 import { useRouter } from "next/router";
