@@ -49,7 +49,7 @@ router.reload(window.location.pathname)
   
   
 
-  return (
+  return 
     <div>
       <nav
         className="relative flex h-12 items-center px-4 justify-between shadow-md dark:shadow-gray-700"
@@ -69,8 +69,8 @@ router.reload(window.location.pathname)
           {user ? (
             <div>
                <Link href="/addProduct" className="p-2 text-dark no-underline hover:underline">
-            Add Product
-          </Link> 
+                Add Product
+               </Link> 
         
               <Link href="" className="p-2 text-dark">
                 <button onClick={logOut}>log out</button>
@@ -86,7 +86,12 @@ router.reload(window.location.pathname)
       
       </nav>
       <br /><br /><br />
+<<<<<<< HEAD
 
+=======
+  
+      
+>>>>>>> 7414b5324c00c5cedb344f8e90254cb909da5486
         <div className="row">
          
         {  allProducts && allProducts.map((e)=>{
@@ -233,10 +238,20 @@ router.reload(window.location.pathname)
     </div>
   </div>
 </footer> 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+>>>>>>> 7414b5324c00c5cedb344f8e90254cb909da5486
       
        </div>
       
-       );
+       
     };
 
         

@@ -1,4 +1,13 @@
 
+<<<<<<< HEAD
+=======
+// export default function add() {
+//   return (
+//     <div>add</div>
+//   )
+// }
+//@ts-nocheck
+>>>>>>> 7414b5324c00c5cedb344f8e90254cb909da5486
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
