@@ -17,6 +17,63 @@ const cloudinary = require("../cloudinary");
 //   }
 // }
 
+const GetAllProductsCart = async (req, res) => {
+  try {
+    await Cart.find({}).then(result => { res.json(result) })
+  }
+  catch (err) {
+    res.json(err)
+  }
+}
+const DeleteAllProductsCart = async (req, res) => {
+  try {
+    await Cart.deleteMany({}).then((result) => {
+      res.json(result);
+    });
+  } catch (err) {
+    res.json(err);
+  }
+};
+const addProductCart = async (req, res) => {
+
+  const body = req.body
+  console.log(body);
+  try {
+    await Cart.create(body, (err, result) => {
+      if (err) res.json(err)
+      res.json(result)
+    })
+  }
+  catch (err) {
+    console.log(err);
+  }
+}
+
+const DeleteOneProductsCart = async (req, res) => {
+  try {
+    await Cart.deleteOne({ Pname:req.body.Pname }).then((result) => {
+      res.json(result);
+    });
+  } catch (err) {
+    res.json(err);
+  }
+};
+
+const UpdateOneProductCart = async (req, res) => {
+  try {
+    
+
+    await Cart.updateOne(
+      { Pname: req.body.Pname },
+      { $set: { Pquantity: req.body.Pquantity } }
+    ).then((result) => {
+      res.json(result);
+    });
+  } catch (err) {
+    res.json(err);
+  }
+};
+
 const deleteProduct = async (req, res) => {
 
   await Product.findByIdAndDelete(req.params.id);
@@ -324,6 +381,11 @@ module.exports = {
   FiltercategoProduct,
   FiltertypeProduct,
   updateOne,
+  GetAllProductsCart,
+  DeleteAllProductsCart,
+  addProductCart,
+  DeleteOneProductsCart ,
+  UpdateOneProductCart
   
   
 };

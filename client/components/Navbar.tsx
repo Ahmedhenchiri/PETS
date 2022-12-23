@@ -38,7 +38,7 @@ function Navbar() {
            window.location.href='/'
          };
         console.log('====================================');
-        console.log(user);
+        console.log(user,'-------');
         console.log('====================================');
         
         //  const filter = (para:any) => {
@@ -77,34 +77,43 @@ function Navbar() {
           style={{ width: "200px", height: "170px" }}
           alt=""
         />
-         <h6 >ADMIN</h6>
+         {/* <h6 >ADMIN</h6> */}
         <div>
-          <Link href="/home" className="p-2 text-dark no-underline hover:underline">
+          {/* {user ? } */}
+          {user ? (
+            <div>
+            <Link href="/home" className="p-2 text-dark no-underline hover:underline">
             Home
           </Link>
           <Link href="/collection" className="p-2 text-dark no-underline hover:underline">
             Collection
           </Link>
 
-          <Link href="/store" className="p-2 text-dark no-underline hover:underline">
+          {/* <Link href="/store" className="p-2 text-dark no-underline hover:underline">
             Store
-          </Link>
+          </Link> */}
           <Link href="/cart" className="p-2 text-dark no-underline hover:underline">
             cart
           </Link>
           <Link href="/aboutus" className="p-2 text-dark no-underline hover:underline">
             About us
           </Link>
-          {user ? (
-            <div>
             <Link href="/addProduct" className="p-2 text-dark no-underline hover:underline">
                 Add Product
                </Link> 
              
               <Link href="" className="p-2 text-dark">
-                <button onClick={logOut}>log out</button>
+                <button onClick={ ()=>{
+                  fetch('http://localhost:5000/user/DeleteAllProductsCart', {
+                    method: 'DELETE',
+                  })
+                    .then((response) => response.json())
+                    .then((data) => {
+                      console.log(data);
+
+                    });;logOut()}}>log out</button>
               </Link>
-              </div>
+               </div>
            ) : (
             <Link href="/login" className="p-2 text-dark">
               Login
