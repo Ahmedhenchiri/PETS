@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from 'next/router'
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -8,20 +9,20 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase-config.js";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
-// const navigate = useNavigate();
+
 
 const signup = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
-
+  const routes= useRouter()
   const [password, setPassword] = useState("");
   const [user, setUser] = useState({} || null);
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      
     });
   }, []);
   const logOut = async () => {
@@ -30,7 +31,7 @@ const signup = () => {
 
   const addUserToDB = () => {
      axios
-       .post("http://localhost:3001/user/signup", {
+       .post("http://localhost:5000/user/signup", {
          Uname: name,
          Uemail: email,
          Uimage: image,
@@ -40,6 +41,7 @@ const signup = () => {
          console.log(res.data);
          
          console.log(`${name} is added `);
+         alert(res.data.message)
        })
        .catch((err) => {
          console.error(err);
@@ -51,16 +53,18 @@ const signup = () => {
     e.preventDefault(false);
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(user.user.uid);
-
+      // console.log(user.user.uid);
+     
       addUserToDB()
       
       //? i want navigate to home page 
       // <Link href="/home" className="p-2 text-dark"></Link>;
       // router.push('/login')
-      window.location.href='/home'
+      // alert(user)
+     routes.push('/home')
     } catch (error: any) {
-      console.log(error.meassage);
+      alert(error)
+      console.log(error);
     }
   };
 
@@ -88,17 +92,17 @@ const signup = () => {
           {user ? (
             <div>
               <Link href="" className="p-2 text-dark">
-                welcome {"   "} {user.email}
+                {/* welcome {"   "} {user.email} */}
               </Link>
               <Link href="" className="p-2 text-dark">
                 <button onClick={logOut}>log out</button>
               </Link>
             </div>
-          ) : (
+           ) : ( 
             <Link href="/login" className="p-2 text-dark">
               Login
             </Link>
-          )}
+         )} 
         </div>
       </nav>
 

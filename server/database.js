@@ -54,6 +54,23 @@ mongoose.connect("mongodb+srv://row:roweyd2000@cluster0.1deydxx.mongodb.net/test
         },
       });
 
+      const CartSchema =new mongoose.Schema({
+        Pname:{
+            type:String,
+        },    
+        Pimage:{
+            type:String
+        },
+        Pprice:{
+            type:Number
+        },
+        Pquantity:{
+          type:Number
+      },
+        
+      });
+
       const User = mongoose.model('User', UserSchema);
-      const Product=mongoose.model('Product',ProductsSchema)
-      module.exports={User,Product}
+      const Product=mongoose.model('Product',ProductsSchema);
+      const Cart=mongoose.model('Cart',CartSchema);
+      module.exports={User,Product,Cart}

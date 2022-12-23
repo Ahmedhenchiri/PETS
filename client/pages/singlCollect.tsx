@@ -2,12 +2,14 @@ import React from 'react'
 import Link from "next/link"
 
 const singlCollect = ({e}:any) => {
+
+  
   return (
     <div>
 
 
 
-<nav
+{/* <nav
         className="relative flex h-12 items-center px-4 justify-between shadow-md dark:shadow-gray-700"
         style={{ height: "70px" }}
       >
@@ -39,7 +41,7 @@ const singlCollect = ({e}:any) => {
             Login
           </Link>
         </div>
-      </nav>
+      </nav> */}
 
 <>
   {/* Open Content */}
@@ -251,7 +253,7 @@ const singlCollect = ({e}:any) => {
                         />
                       </li>
                       <li className="list-inline-item">
-                        <span className="btn btn-success" id="btn-minus">
+                        <span className="btn btn-success" id="btn-minus" >
                           -
                         </span>
                       </li>
@@ -269,7 +271,7 @@ const singlCollect = ({e}:any) => {
                   </div>
                 </div>
                 <div className="row pb-3">
-                  <div className="col d-grid">
+                  {/* <div className="col d-grid">
                     <button
                       type="submit"
                       className="btn btn-success btn-lg"
@@ -278,14 +280,32 @@ const singlCollect = ({e}:any) => {
                     >
                       Buy
                     </button>
-                  </div>
+                  </div> */}
                   <div className="col d-grid">
                     <a
                       type="submit"
                       className="btn btn-success btn-lg"
                       
                       
-                      href='/cart/cart'
+                      // href='/cart/cart'
+                      onClick={()=>{
+                        fetch('http://localhost:5000/user/addProductCart', {
+                          method: 'POST',
+                          body: JSON.stringify({
+                            Pname: 'Katous',
+                            Pimage: "https://res.cloudinary.com/duqxezt6m/image/upload/v1671019955/cat-sweater-costumes-300x300_lzyrl3.jpg",
+                            Pprice:12,
+                            Pquantity:1
+                          }),
+                          headers: {
+                            'Content-Type': 'application/json',
+                          },
+                        })
+                          .then((response) => response.json())
+                          .then((data) => {
+                            console.log(data);
+                          });
+                      }}
                       
                     >
                       Add To Cart

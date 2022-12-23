@@ -1,55 +1,97 @@
-import React  from 'react'
+//@ts-nocheck
+import React , { useEffect, useState } from 'react'
 import Link from "next/link"
+import axios from 'axios';
+import { useRouter } from 'next/router'
+
 
 const cart = () => {
+  const router = useRouter()
 
+  const [AllProductsCart, setAllProductsCart] = useState([])
+  
+  
 
+  useEffect(() => {
+    axios.get("http://localHost:5000/user/GetAllProductsCart").then(res => {
+      setAllProductsCart(res.data)
+      console.log(res.data.message);
+      
+    })
+  }, [])
 
+ const HandleClickMinus=(name,quantity)=>{
+  
+  fetch('http://localHost:5000/user/UpdateOneProductCart', {
+      method: 'PUT',
+      body: JSON.stringify({
+        Pname: name,
+        Pquantity: (quantity - 1),
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+      router.reload(window.location.pathname)  
 
+      
+      if(quantity===0){fetch('http://localHost:5000/user/DeleteOneProductsCart', {
+    method: 'DELETE',
+    body: JSON.stringify({
+      Pname:name,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {response.json();router.reload(window.location.pathname)})
+    .then((data) => {
+      console.log(data);
+      
+    });
+  
+
+  }
+ 
+ }
+
+ const HandleClickPlus=(name,quantity)=>{
+
+  fetch('http://localHost:5000/user/UpdateOneProductCart', {
+  method: 'PUT',
+  body: JSON.stringify({
+    Pname: name,
+    Pquantity: (quantity + 1),
+  }),
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+  });
+  router.reload(window.location.pathname)  
+
+  
+ }
+  
+//  useEffect(() => {
+//   axios.delete("http://localHost:5000/user/DeleteAllProductsCart").then(res => {
+//     setAllProductsCart(res.data)
+//     console.log(res.data.message);
+    
+//   })
+// }, [])
+  
+  
 
   return (
     <div>
-
-<nav
-        className="relative flex h-12 items-center px-4 justify-between shadow-md dark:shadow-gray-700"
-        style={{ height: "70px" }}
-      >
-        <img
-          src="https://res.cloudinary.com/dnwi9wvci/image/upload/v1670936284/1_rdfnhm.png"
-          className="logo"
-          style={{ width: "200px", height: "170px" }}
-          alt=""
-        />
-
-        <div>
-          <Link href="/home" className="p-2 text-dark no-underline hover:underline">
-            Home
-          </Link>
-          <Link href="/collection" className="p-2 text-dark no-underline hover:underline">
-            Collection
-          </Link>
-
-          <Link href="/store" className="p-2 text-dark no-underline hover:underline">
-            Store
-          </Link>
-          <Link href="/cart" className="p-2 text-dark no-underline hover:underline">
-            cart
-          </Link>
-          <Link href="/aboutus" className="p-2 text-dark no-underline hover:underline">
-            About us
-          </Link>
-          <Link href="/login" className="p-2 text-dark no-underline hover:underline">
-            Login
-          </Link>
-        </div>
-      </nav>
-
-
-
-
-
-
-
 
       <div className="h-screen bg-gray-300">
   <div className="py-12">
@@ -60,7 +102,40 @@ const cart = () => {
             <div className="col-span-2 p-5">
               <h1 className="text-xl font-medium ">Shopping Cart</h1>
               <div className="flex justify-between items-center mt-6 pt-6">
-                <div className="flex  items-center">
+             {AllProductsCart && AllProductsCart.map((e)=>{return (  <><div className="flex  items-center">
+                  <img
+                    src={e.Pimage}
+                    width={60}
+                    className="rounded-full "
+                  />
+                  <div className="flex flex-col ml-3">
+                    <span className="md:text-md font-medium">{e.Pname}</span>
+                    {/* <span className="text-xs font-light text-gray-400">
+                      #41551
+                    </span> */}
+                  </div>
+                </div>
+                <div className="flex justify-center items-center">
+                  <div className="pr-8 flex ">
+                    <span className="font-semibold" onClick={()=>{HandleClickMinus(e.Pname,e.Pquantity)}}>-</span>
+                    <input
+                      type="text"
+                      className="focus:outline-none bg-gray-100 border h-6 w-8 rounded text-sm px-2 mx-2"
+                     
+                      value={e.Pquantity}
+                    />
+                    <span className="font-semibold" onClick={()=>{HandleClickPlus(e.Pname,e.Pquantity)}}>+</span>
+                  </div>
+                  <div className="pr-8 ">
+                    <span className="text-xs font-medium">{e.Pprice*e.Pquantity}</span>
+                  </div>
+                  <div>
+                    <i className="fa fa-close text-xs font-medium" />
+                  </div>
+                </div>
+                </>)})
+                }
+             {/* <div className="flex  items-center">
                   <img
                     src="https://res.cloudinary.com/duqxezt6m/image/upload/v1671019955/cat-sweater-costumes-300x300_lzyrl3.jpg"
                     width={60}
@@ -89,10 +164,14 @@ const cart = () => {
                   <div>
                     <i className="fa fa-close text-xs font-medium" />
                   </div>
-                </div>
+                </div>) */} 
+
+
+               
+              
               </div>
 
-              <div className="flex justify-between items-center mt-6 pt-6 border-t">
+              {/* <div className="flex justify-between items-center mt-6 pt-6 border-t">
                 <div className="flex items-center">
                   <i className="fa fa-arrow-left text-sm pr-2" />
                   <span className="text-md  font-medium text-blue-500">
@@ -197,8 +276,30 @@ const cart = () => {
               </div>
               <button className="h-12 w-full bg-blue-500 rounded focus:outline-none text-white hover:bg-blue-600">
                 Check Out
+              </button>*/}
+              <button className="h-12 w-full bg-blue-500 rounded focus:outline-none text-white hover:bg-blue-600" onClick={()=>{
+//                 useEffect(() => {
+//   axios.delete("http://localHost:5000/user/DeleteAllProductsCart").then(res => {
+//     setAllProductsCart(res.data)
+//     console.log(res.data.message);
+//     router.reload(window.location.pathname)
+    
+//   })
+// }, []
+// )
+fetch('http://localhost:5000/user/DeleteAllProductsCart', {
+  method: 'DELETE',
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+router.reload(window.location.pathname)
+  });
+}
+}>
+                Check Out
               </button>
-            </div>
+             </div> 
           </div>
         </div>
       </div>

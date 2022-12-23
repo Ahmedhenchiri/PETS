@@ -1,7 +1,18 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const { User, Product} = require("../database");
+const { User, Product,Cart} = require("../database");
 const cloudinary = require("../cloudinary");
+
+
+const GetAllProductsCart = async (req, res) => {
+  try {
+    await Cart.find({}).then(result => { res.json(result) })
+  }
+  catch (err) {
+    res.json(err)
+  }
+}
+
 
 
 const deleteProduct = async (req, res) => {
@@ -48,7 +59,10 @@ const login = async (req, res) => {
     return { status: "error", error: "username not found" };
   } else {
     const token = jwt.sign(
-      { name: user.Uname, email: user.Uemail, Uimage: user.Uimage },
+
+      // modified by ahlem
+      
+      { name: user.Uname, email: user.Uemail, Uimage: user.Uimage , admin:user.admin,},
       "topsecret"
     );
     return res.json({ user: token, status: "all good" });
@@ -272,6 +286,60 @@ const FiltertypeProduct = async (req, res) => {
       res.json(err);
     }
   };
+
+  const DeleteAllProductsCart = async (req, res) => {
+    try {
+      await Cart.deleteMany({}).then((result) => {
+        res.json(result);
+      });
+    } catch (err) {
+      res.json(err);
+    }
+  };
+
+  const addProductCart = async (req, res) => {
+
+    const body = req.body
+    console.log(body);
+    try {
+      await Cart.create(body, (err, result) => {
+        if (err) res.json(err)
+        res.json(result)
+      })
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+  
+  const DeleteOneProductsCart = async (req, res) => {
+    try {
+      await Cart.deleteOne({ Pname:req.body.Pname }).then((result) => {
+        res.json(result);
+      });
+    } catch (err) {
+      res.json(err);
+    }
+  };
+
+  const UpdateOneProductCart = async (req, res) => {
+    try {
+      
+
+      await Cart.updateOne(
+        { Pname: req.body.Pname },
+        { $set: { Pquantity: req.body.Pquantity } }
+      ).then((result) => {
+        res.json(result);
+      });
+    } catch (err) {
+      res.json(err);
+    }
+  };
+
+
+
+
 module.exports = {
 
   deleteUser,
@@ -288,6 +356,11 @@ module.exports = {
   getAllUsers,
   CheckUser,
   FiltercategoProduct,
-  FiltertypeProduct
+  FiltertypeProduct,
+  GetAllProductsCart,
+  DeleteAllProductsCart,
+  addProductCart,
+  DeleteOneProductsCart ,
+  UpdateOneProductCart
   
 };

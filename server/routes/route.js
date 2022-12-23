@@ -15,6 +15,11 @@ const {
     CheckUser,
     FiltercategoProduct,
     FiltertypeProduct,
+    GetAllProductsCart,
+    DeleteAllProductsCart,
+    addProductCart,
+    DeleteOneProductsCart,
+    UpdateOneProductCart
    
 } = require("../controller/controller");
 
@@ -23,7 +28,12 @@ dcrouter.route('/addProduct').post(addProduct)
 dcrouter.route('/deleteProduct/:name').delete(deleteProduct)
 dcrouter.route('/getAllProducts').get(GetAllProducts)
 
-
+//Cart 
+dcrouter.route('/GetAllProductsCart').get(GetAllProductsCart)
+dcrouter.route('/DeleteAllProductsCart').delete(DeleteAllProductsCart)
+dcrouter.route('/addProductCart').post(addProductCart)
+dcrouter.route('/DeleteOneProductsCart').delete(DeleteOneProductsCart)
+dcrouter.route('/UpdateOneProductCart').put(UpdateOneProductCart)
 
 //user Requests
 dcrouter.route("/getUser/:name").get(getUser); 
