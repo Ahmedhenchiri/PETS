@@ -16,6 +16,11 @@ const {
     FiltercategoProduct,
     FiltertypeProduct,
     updateOne,
+    GetAllProductsCart,
+    DeleteAllProductsCart,
+    addProductCart,
+    DeleteOneProductsCart,
+    UpdateOneProductCart
    
 } = require("../controller/controller");
 
@@ -46,7 +51,12 @@ dcrouter.route("/oneproduct/:id").get(getOneProduct);
 dcrouter.route("/filter/:Ptype").get(FiltertypeProduct)
 dcrouter.route("/filters/:Pcategorie").get(FiltercategoProduct)
 
-//
+//Cart 
+dcrouter.route('/GetAllProductsCart').get(GetAllProductsCart)
+dcrouter.route('/DeleteAllProductsCart').delete(DeleteAllProductsCart)
+dcrouter.route('/addProductCart').post(addProductCart)
+dcrouter.route('/DeleteOneProductsCart').delete(DeleteOneProductsCart)
+dcrouter.route('/UpdateOneProductCart').put(UpdateOneProductCart)
 
 
 

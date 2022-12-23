@@ -54,7 +54,22 @@ mongoose.connect("mongodb://0.0.0.0/catsdogs",{
             type:String 
         },
       });
-
+      const CartSchema =new mongoose.Schema({
+        Pname:{
+            type:String,
+        },    
+        Pimage:{
+            type:String
+        },
+        Pprice:{
+            type:Number
+        },
+        Pquantity:{
+          type:Number
+      },
+        
+      });
+      const Cart=mongoose.model('Cart',CartSchema);
       const User = mongoose.model('User', UserSchema);
       const Product=mongoose.model('Product',ProductsSchema)
-      module.exports={User,Product}
+      module.exports={User,Product,Cart}

@@ -57,7 +57,7 @@ export default function AddProduct() {
   return (
     <div>
    
-    <nav
+    {/* <nav
     className="relative flex h-12 items-center px-4 justify-between shadow-md dark:shadow-gray-700"
     style={{ height: "70px" }}
   >
@@ -90,7 +90,7 @@ export default function AddProduct() {
 
     </div>
   
-  </nav>
+  </nav> */}
   <br /><br /><br />
   <center>
     <div className="form">

@@ -259,14 +259,14 @@ const [result,setResult] = useState({})
                 </div>
                 <div className="row pb-3">
                   <div className="col d-grid">
-                    <button
+                    {/* <button
                       type="submit"
                       className="btn btn-success btn-lg"
                       name="submit"
                       value="buy"
                     >
                       Buy
-                    </button>
+                    </button> */}
                   </div>
                   <div className="col d-grid">
                     <a
@@ -274,7 +274,26 @@ const [result,setResult] = useState({})
                       className="btn btn-success btn-lg"
                       
                       
-                      href='/cart/cart'
+                      // href='/cart/cart'
+                      onClick={()=>{
+                        fetch('http://localhost:5000/user/addProductCart', {
+                          method: 'POST',
+                          body: JSON.stringify({
+                            Pname: result.Pname,
+                            Pimage: result.Pimage,
+                            Pprice:result.Pprice,
+                            Pquantity:1
+                          }),
+                          headers: {
+                            'Content-Type': 'application/json',
+                          },
+                        })
+                          .then((response) => response.json())
+                          .then((data) => {
+                            console.log(data);
+                          });
+                          // router.reload(window.location.pathname)
+                      }}
                       
                     >
                       Add To Cart
